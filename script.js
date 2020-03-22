@@ -23,7 +23,7 @@ const correctLetters = []
 const wrongLetters = []
 
 // Shows Hidden Word
-const  diplayWord = () => {
+const  displayWord = () => {
   wordElement.innerHTML = `
     ${randomWord
       .split('')
@@ -83,4 +83,4 @@ window.addEventListener('keydown', e => {
 
 
 
-diplayWord()
+displayWord()
