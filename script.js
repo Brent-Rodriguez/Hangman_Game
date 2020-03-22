@@ -1,11 +1,11 @@
 const wordElement = document.getElementById('word')
 const wrongLettersElement = document.getElementById('wrong-letters')
-const playAgainBtn = document.getElementById('play-again')
+const playAgainBtn = document.getElementById('play-button')
 const popup = document.getElementById('popup-container')
 const notification = document.getElementById('notification-container')
 const finalMessage = document.getElementById('final-message')
 
-const figureParts = document.querySelectorAll('figure-part')
+const figureParts = document.querySelectorAll('.figure-part')
 
 // Array of words
 const words = [
@@ -41,9 +41,32 @@ const  displayWord = () => {
   }
 }
 
-// Update Wrong Letters Arr
+// Update Wrong Letters
 const updateWrongLettersElement = () => {
-  console.log('Update Wrong')
+  // Display Wrong Letters
+  wrongLettersElement.innerHTML = `
+    ${wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
+    ${wrongLetters.map(letter => `<span>${letter}</span>`)}
+  `;
+
+  // Display Hangmans Parts
+  figureParts.forEach((parts, index) => {
+    const errors = wrongLetters.length
+
+    if(index < errors) {
+      parts.style.display = 'block';
+    } else {
+      parts.style.display = 'none';
+    }
+  })
+
+  // Check if Lost
+  if(wrongLetters.length === figureParts.length) {
+    finalMessage.innerText = 'Sorry You Lost'
+    popup.style.display = 'flex'
+  }
+
+
 }
 
 // Show Notification
@@ -55,6 +78,7 @@ const showNotification = () => {
   }, 2000)
 }
 
+// Event Listners
 // Keydown Letter Press
 window.addEventListener('keydown', e => {
    if(e.keyCode >= 65 && e.keyCode <= 90) {
@@ -79,6 +103,20 @@ window.addEventListener('keydown', e => {
      }
    }
 }) 
+
+// Restart Game
+playAgainBtn.addEventListener('click', () => {
+  // Clear Arr
+  correctLetters.splice(0)
+  wrongLetters.splice(0)
+
+  randomWord = words[Math.floor(Math.random() * words.length)]
+
+  displayWord()
+  updateWrongLettersElement()
+
+  popup.style.display = 'none'
+})
 
 
 
