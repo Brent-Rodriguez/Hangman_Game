@@ -65,8 +65,6 @@ const updateWrongLettersElement = () => {
     finalMessage.innerText = 'Sorry You Lost'
     popup.style.display = 'flex'
   }
-
-
 }
 
 // Show Notification
@@ -117,8 +115,5 @@ playAgainBtn.addEventListener('click', () => {
 
   popup.style.display = 'none'
 })
-
-
-
 
 displayWord()
