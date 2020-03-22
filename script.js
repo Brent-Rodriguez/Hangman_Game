@@ -7,7 +7,7 @@ const finalMessage = document.getElementById('final-message')
 
 const figureParts = document.querySelectorAll('.figure-part')
 
-// Array of words
+// Hard Coded Array of words
 const words = [
   'sony',
   'bird',
